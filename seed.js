@@ -90,6 +90,7 @@ const seed = async () => {
       Rank.bulkCreate(ranks),
       User.bulkCreate(users)
     ])
+    await db.close()
   } catch (err) {
     console.error(err)
   }
