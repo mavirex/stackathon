@@ -10,9 +10,9 @@ class LeftNav extends Component {
         <div>
           <div>Available Bounties:</div>
           <ul>
-            <li className="selectBounty" onClick={()=> getBounty()}>Easy</li>
-            <li className="selectBounty">Medium</li>
-            <li className="selectBounty">Hard</li>
+            <li className="selectBounty" onClick={()=> getBounty("easy")}>Easy</li>
+            <li className="selectBounty" onClick={()=> getBounty("medium")}>Medium</li>
+            <li className="selectBounty" onClick={()=> getBounty("hard")}>Hard</li>
           </ul>
         </div>
         <div>Credits: {user.credits}</div>
@@ -27,8 +27,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getBounty: () => {
-        dispatch(getBounty())
+    getBounty: (difficulty) => {
+        dispatch(getBounty(difficulty))
     }
 })
 

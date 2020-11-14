@@ -11,10 +11,10 @@ function _getQuestions (questions) {
   }
 }
 
-export function getQuestions () {
+export function getQuestions (difficulty) {
   return async (dispatch) => {
     try {
-      const response = await axios.get('https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple&encode=url3986')
+      const response = await axios.get(`https://opentdb.com/api.php?amount=10&difficulty=${difficulty}&type=multiple&encode=url3986`)
       dispatch(_getQuestions(formatAllQuestions(response.data.results)))
     } catch (err) {
       console.error(err)

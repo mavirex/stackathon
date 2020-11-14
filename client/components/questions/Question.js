@@ -25,12 +25,11 @@ class Question extends Component {
   componentDidMount () {
     document.addEventListener('keydown', this.onKeyDown.bind(this))
     const { getQuestions } = this.props
-    getQuestions()
+    getQuestions(this.props.bounty)
     this.clock = setInterval(
       () => this.countDown(),
       1000
     )
-    console.log("This bad boy is running somewhere")
   }
 
   componentWillUnmount () {
@@ -117,8 +116,8 @@ class Question extends Component {
   returnToMainMenu () {
     const { props, state } = this
     const { user, updateUser, completeBounty } = props
-    const { points, quantumBlasts } = state
-    const credits = user.credits + 500
+    const { points, quantumBlasts, right } = state
+    const credits = right >= user.rank.markHits ? user.credits + 500 : user.credits
     const dailyScore = user.dailyScore + points
     const weeklyScore = user.weeklyScore + points
     const merit = user.merit + points
@@ -215,12 +214,13 @@ class Question extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  questions: state.questions
+  questions: state.questions,
+  bounty: state.bounty
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getQuestions: () => {
-    dispatch(getQuestions())
+  getQuestions: (difficulty) => {
+    dispatch(getQuestions(difficulty))
   },
   updateUser: (userId, newUserInfo) => {
     dispatch(updateUser(userId, newUserInfo))

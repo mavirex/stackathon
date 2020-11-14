@@ -1,9 +1,10 @@
 const GET_BOUNTY = "GET_BOUNTY"
 const COMPLETE_BOUNTY = "COMPLETE_BOUNTY"
 
-export function getBounty () {
+export function getBounty (difficulty) {
     return {
         type: GET_BOUNTY,
+        payload: difficulty
     }
 }
 
@@ -13,12 +14,12 @@ export function completeBounty () {
     }
 }
 
-export default function bountyReducer (state = false, action) {
+export default function bountyReducer (state = '', action) {
     if (action.type === GET_BOUNTY) {
-        state = true
+        state = action.payload
     }
     if (action.type === COMPLETE_BOUNTY) {
-        state = false
+        state = ''
     }
     return state
 }
