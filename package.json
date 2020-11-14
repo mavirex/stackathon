@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "seed": "node seed",
-    "start": "node server",
+    "start": "node seed && node server",
     "build": "webpack --mode=\"production\"",
     "start-server": "nodemon main.js -e html,js,css --ignore public",
     "build-watch": "webpack -w --mode=\"development\"",

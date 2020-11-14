@@ -85,7 +85,7 @@ const seed = async () => {
   try {
     console.log('seeding')
     await hashPasswords(),
-    await db.sync({ force: true })
+    await db.sync()
     await Promise.all([ 
       Rank.bulkCreate(ranks),
       User.bulkCreate(users)
