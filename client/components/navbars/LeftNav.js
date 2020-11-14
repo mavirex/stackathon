@@ -4,6 +4,10 @@ import { getBounty } from '../../redux/bounties/bounty'
 import { updateUser } from '../../redux/users/user'
 
 class LeftNav extends Component {
+  constructor(props) {
+    super(props)
+    this.rechargeBlasts = this.rechargeBlasts.bind(this)
+  }
   rechargeBlasts () {
     const { user, updateUser } = this.props
     if (user.credits < 100) {
@@ -18,7 +22,6 @@ class LeftNav extends Component {
         quantumBlasts
       })
     }
-    console.log('Hello World')
   }
   render () {
     const { rechargeBlasts } = this
