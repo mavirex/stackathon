@@ -4,6 +4,7 @@ const app = express()
 const path = require('path')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser');
+const { db } = require('./db');
 const api = require('./api')
 
 app.use(morgan('dev'))
@@ -29,8 +30,9 @@ app.use((err, req, res, next) => {
 
 async function init () {
   try {
+    await db.sync()
     const PORT = process.env.PORT || 3000
-    await app.listen(PORT, () => {
+    app.listen(PORT, () => {
       console.log(`Listening at http//localhost:${PORT}`)
     })
   } catch (err) {
