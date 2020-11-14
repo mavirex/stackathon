@@ -1,0 +1,8 @@
+node_modules/*
+
+server/public/bundle.js
+server/public/bundle.js.map
+
+npm-debug.log
+
+.DS_Store
