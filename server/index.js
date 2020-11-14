@@ -27,10 +27,10 @@ app.use((err, req, res, next) => {
   res.send(`Something wrong: ${err.message}`)
 })
 
-function init () {
+async function init () {
   try {
     const PORT = process.env.PORT || 3000
-    app.listen(PORT, () => {
+    await app.listen(PORT, () => {
       console.log(`Listening at http//localhost:${PORT}`)
     })
   } catch (err) {
